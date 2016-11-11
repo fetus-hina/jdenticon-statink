@@ -8,7 +8,7 @@ Type=simple
 ExecStart=npm start
 User=jdenticon-statink
 Group=jdenticon-statink
-WorkingDirectory=/home/jdenticon-statink
+WorkingDirectory=/home/jdenticon-statink/jdenticon-statink
 
 [Install]
 WantedBy=multi-user.target
