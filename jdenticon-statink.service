@@ -5,7 +5,9 @@ Requires=network.target
 
 [Service]
 Type=simple
-ExecStart=npm start
+Restart=always
+ExecStart=/usr/bin/npm start
+ExecStop=/bin/kill ${MAINPID}
 User=jdenticon-statink
 Group=jdenticon-statink
 WorkingDirectory=/home/jdenticon-statink/jdenticon-statink
