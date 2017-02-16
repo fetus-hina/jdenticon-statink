@@ -1,12 +1,13 @@
 [Unit]
 Description=Jdenticon generator server
-After=network.target
-Requires=network.target
+After=network.target docker.service
+Requires=network.target docker.service
 
 [Service]
 Type=simple
 Restart=always
-ExecStart=/usr/bin/npm start
+ExecStartPre=/usr/bin/docker-compose--project-name prod-jdenticon build
+ExecStart=/usr/bin/docker-compose --project-name prod-jdenticon up --no-color
 ExecStop=/bin/kill ${MAINPID}
 User=jdenticon-statink
 Group=jdenticon-statink

@@ -1,0 +1,24 @@
+version: "3"
+services:
+  app:
+    build: ./app
+    image: "jp3cki/jdenticon"
+    networks:
+      - jdenticon
+
+  cache:
+    image: "njmittet/alpine-varnish:latest"
+    volumes:
+      - "./cache/default.vcl:/tmp/default.vcl"
+    environment:
+      VCL_CONFIG: "/tmp/default.vcl"
+      CACHE_SIZE: "32m"
+    ports:
+      - "8080/tcp"
+    depends_on:
+      - app
+    networks:
+      - jdenticon
+
+networks:
+  jdenticon:
